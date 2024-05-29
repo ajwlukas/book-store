@@ -8,8 +8,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeContext.Provider value={state}>
     <App />
-    </ThemeContext.Provider>
   </React.StrictMode>
 );

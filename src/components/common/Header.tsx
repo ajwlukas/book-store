@@ -2,47 +2,62 @@ import { styled } from "styled-components"
 import logo from "../../assets/logo.jpg"
 import { FaSignInAlt, FaRegUser } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Category } from "../../models/category.model";
+import { fetchCategory } from "../../api/category.api";
 
-const CATEGORY = [
-    {
-        id: null,
-        name: "전체",
-    },
-    {
-        id: 0,
-        name: "동화",
-    },
-    {
-        id: 1,
-        name: "소설",
-    },
-    {
-        id: 2,
-        name: "사회",
-    },
-]
+// const CATEGORY = [
+//     {
+//         id: null,
+//         name: "전체",
+//     },
+//     {
+//         id: 0,
+//         name: "동화",
+//     },
+//     {
+//         id: 1,
+//         name: "소설",
+//     },
+//     {
+//         id: 2,
+//         name: "사회",
+//     },
+// ]
 
 function Header() {
+
+    const [categories, setCategories] = useState<Category[]>([]);
+
+    useEffect(() => {
+        fetchCategory().then((categories) => {
+            setCategories(categories);
+        })
+    }, []);
+
+    console.log(categories);
+
+
     return (
         <HeaderStyle>
             <h1 className="logo">
-            <Link to='/'>
-                <img src={logo} alt="book store" />
+                <Link to='/'>
+                    <img src={logo} alt="book store" />
                 </Link>
             </h1>
 
             <nav className="category">
                 <ul>
-                    {
-                        CATEGORY.map((category) => (
-                            <li key={category.id}>
-                                <Link to={
-                                    category.id === null
-                                        ? '/books'
-                                        : `/books?category_id=${category.id}`}>{category.name}</Link>
-                            </li>
-                        ))
-                    }
+                    {categories.map((category) => (
+                        <li key={category.id}>
+                            <Link to={
+                                category.id === null
+                                    ? '/books'
+                                    : `/books?category_id=${category.id}`}>{category.name}
+                            </Link>
+                        </li>
+                    ))}
+
                 </ul>
             </nav>
 

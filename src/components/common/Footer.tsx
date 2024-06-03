@@ -40,6 +40,6 @@ align-items: center;
       color: ${({ theme }) => theme.color.text}
     }
   }
-`
+`;
 
 export default Footer

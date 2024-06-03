@@ -10,7 +10,7 @@ function Home() {
         <Title size="large" color="background">
             제목 테스트
         </Title>
-        <Button size="large" scheme="primary"> 버튼 테스트 </Button>
+        <Button size="large" $scheme="primary"> 버튼 테스트 </Button>
         <InputText placeholder="large"/>
         <div>home body</div>
         </>

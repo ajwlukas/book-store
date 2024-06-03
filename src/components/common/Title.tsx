@@ -24,4 +24,4 @@ const TitleStyle = styled.h1<Omit<Props, "children">>`
     color : ${({theme, color}) => color ? theme.color[color] : theme.color.primary};
 `;
 
-export default Title
+export default Title;

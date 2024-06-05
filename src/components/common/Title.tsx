@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Title = ({children, size, color}:Props) => {
-    console.log(TitleStyle);
 
   return (
 

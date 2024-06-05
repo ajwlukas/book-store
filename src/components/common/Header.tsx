@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { Category } from "../../models/category.model";
 import { fetchCategory } from "../../api/category.api";
+import { useCategory } from "../../hooks/useCategory";
 
 // const CATEGORY = [
 //     {
@@ -27,15 +28,7 @@ import { fetchCategory } from "../../api/category.api";
 
 function Header() {
 
-    const [categories, setCategories] = useState<Category[]>([]);
-
-    useEffect(() => {
-        fetchCategory().then((categories) => {
-            setCategories(categories);
-        })
-    }, []);
-
-    console.log(categories);
+    const {categories} = useCategory();
 
 
     return (

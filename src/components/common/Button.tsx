@@ -8,11 +8,12 @@ interface Props {
     $scheme: ButtonScheme;
     disabled?: boolean;
     isLoading?: boolean;
+    type? : string;
 }
 
-const Button = ({ children, size, $scheme, disabled, isLoading }: Props) => {
+const Button = ({ children, size, $scheme, disabled, isLoading, type }: Props) => {
     return (
-        <ButtonStyle size={size} $scheme={$scheme} disabled={disabled} isLoading={isLoading}>{children}</ButtonStyle>
+        <ButtonStyle type={type} size={size} $scheme={$scheme} disabled={disabled} isLoading={isLoading}>{children}</ButtonStyle>
     )
 }
 

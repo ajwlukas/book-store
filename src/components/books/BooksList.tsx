@@ -34,7 +34,7 @@ const BooksList = ({books}:Props) => {
     <BooksListStyle>
       {
         books?.map((book)=>
-          <BookItem book={book}/>
+          <BookItem book={book} key={book.id} />
         )
       }
         {/* <BookItem book={dummyBook}/> */}

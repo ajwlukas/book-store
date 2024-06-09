@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 import BookItem from './BookItem';
 import { Book } from '../../models/book.model';
+import BooksFilter from './BooksFilter';
+import BooksViewSwitcher from './BooksViewSwitcher';
+import BooksEmpty from './BooksEmpty';
 
 const dummyBook : Book = {
         "id": 2,
@@ -20,18 +23,30 @@ const dummyBook : Book = {
         "contents": "목차입니다.",
         "pub_date": "2024-04-12",
 }
+interface Props {
+  books?: Book[];
+}
 
 
-const BooksList = () => {
+const BooksList = ({books}:Props) => {
   return (
+    <>
     <BooksListStyle>
-        <BookItem book={dummyBook}/>
+      {
+        books?.map((book)=>
+          <BookItem book={book}/>
+        )
+      }
+        {/* <BookItem book={dummyBook}/> */}
     </BooksListStyle>
+    </>
   )
 }
 
 const BooksListStyle = styled.div`
-    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
 `;
 
 export default BooksList

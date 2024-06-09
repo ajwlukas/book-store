@@ -7,20 +7,22 @@ import { QUERYSTRING } from '../../constants/querystring';
 
 const viewOptions = [
   {
-    value:"list",
-    icon: <FaList/>
+    value: "list",
+    icon: <FaList />
   },
   {
-    value:"grid",
-    icon: <FaTh/>
+    value: "grid",
+    icon: <FaTh />
   }
 ]
 
+export type ViewMode = "grid" | "list";
+
 const BooksViewSwitcher = () => {
 
-  const [searchParams,setSearchParams] = useSearchParams();
-  
-  const handleSwitch = (value : string) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleSwitch = (value: ViewMode) => {
     const newSearchParams = new URLSearchParams(searchParams);
 
     newSearchParams.set(QUERYSTRING.VIEW, value);
@@ -30,19 +32,18 @@ const BooksViewSwitcher = () => {
     localStorage.setItem('view', value);
   }
 
-  useEffect(() =>{
-    if(!localStorage.getItem('view'))
-      {
-        handleSwitch('grid');
-      }
+  useEffect(() => {
+    if (!localStorage.getItem('view')) {
+      handleSwitch('grid');
+    }
 
-  },[]);
-  
+  }, []);
+
   return (
     <BooksViewSwitcherStyle>
       {
         viewOptions.map(option => (
-          <Button size="small" $scheme={searchParams.get(QUERYSTRING.VIEW) === option.value ? 'primary': 'normal'} onClick={()=>handleSwitch(option.value)}>
+          <Button size="small" $scheme={searchParams.get(QUERYSTRING.VIEW) === option.value ? 'primary' : 'normal'} onClick={() => handleSwitch(option.value as ViewMode)}>
             {option.icon}
           </Button>
         ))

@@ -8,33 +8,10 @@ import { fetchCategory } from "../../api/category.api";
 import { useCategory } from "../../hooks/useCategory";
 import { useAuthStore } from "../../store/authStore";
 
-// const CATEGORY = [
-//     {
-//         id: null,
-//         name: "전체",
-//     },
-//     {
-//         id: 0,
-//         name: "동화",
-//     },
-//     {
-//         id: 1,
-//         name: "소설",
-//     },
-//     {
-//         id: 2,
-//         name: "사회",
-//     },
-// ]
-
 function Header() {
 
     const { categories } = useCategory();
     const { isLoggedIn, storeLogout } = useAuthStore();
-
-    const handleLogOut = () => {
-        storeLogout();
-    }
 
     return (
         <HeaderStyle>
@@ -50,8 +27,8 @@ function Header() {
                         <li key={category.id}>
                             <Link to={
                                 category.id === null
-                                    ? '/books'
-                                    : `/books?category_id=${category.id}`}>{category.name}
+                                    ? `/books?view=${localStorage.getItem("view")}`
+                                    : `/books?category_id=${category.id}&view=${localStorage.getItem("view")}`}>{category.categoryName}
                             </Link>
                         </li>
                     ))}
@@ -61,15 +38,13 @@ function Header() {
 
             <nav className="auth">
                 {
-                    isLoggedIn && (
+                    isLoggedIn ? (
                         <ul>
                             <li><Link to="/cart">장바구니</Link></li>
                             <li><Link to="/orderlist">주문 내역</Link></li>
-                            <li><button onClick={storeLogout}>로그아웃</button></li>
+                            <li><button onClick={storeLogout}><FaSignOutAlt />로그아웃</button></li>
                         </ul>
-                    )
-                }
-                {
+                    ):
                     !isLoggedIn && (
 
                         <ul>

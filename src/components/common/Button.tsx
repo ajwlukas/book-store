@@ -2,31 +2,36 @@ import React from 'react'
 import styled from 'styled-components';
 import { ButtonScheme, ButtonSize } from '../../style/theme';
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     size: ButtonSize;
-    $scheme: ButtonScheme;
+    scheme: ButtonScheme;
     disabled?: boolean;
     isLoading?: boolean;
-    type? : string;
 }
 
-const Button = ({ children, size, $scheme, disabled, isLoading, type }: Props) => {
+const Button = ({ children, size, onClick, scheme, disabled, isLoading, type, ...props }: Props) => {
     return (
-        <ButtonStyle type={type} size={size} $scheme={$scheme} disabled={disabled} isLoading={isLoading}>{children}</ButtonStyle>
+        <ButtonStyle type={type} onClick={onClick} size={size} $scheme={scheme} disabled={disabled} isLoading={isLoading} {...props}>{children}</ButtonStyle>
     )
 }
 
-const ButtonStyle = styled.button<Omit<Props, "children">>`
-font-size: ${({ theme, size }) => theme.button[size].fontSize};
-padding: ${({ theme, size }) => theme.button[size].padding};
-color : ${({ theme, $scheme }) => theme.buttonScheme[$scheme].color};
-background-color : ${({ theme, $scheme }) => theme.buttonScheme[$scheme].backgroundColor};
-border:0;
-border-radius : ${({theme}) => theme.borderRadius.default};
-opacity : ${({ disabled }) => disabled ? 0.5 : 1.0};
-pointer-events : ${({ disabled }) => disabled ? "none" : "auto"};
-cursor : ${({ disabled }) => disabled ? "none" : "pointer"};
+interface ButtonStyleProps{
+    size: ButtonSize;
+    $scheme: ButtonScheme;
+    isLoading?: boolean;
+}
+
+const ButtonStyle = styled.button<ButtonStyleProps>`
+    font-size: ${({ theme, size }) => theme.button[size].fontSize};
+    padding: ${({ theme, size }) => theme.button[size].padding};
+    color : ${({ theme, $scheme }) => theme.buttonScheme[$scheme].color};
+    background-color : ${({ theme, $scheme }) => theme.buttonScheme[$scheme].backgroundColor};
+    border:0;
+    border-radius : ${({ theme }) => theme.borderRadius.default};
+    opacity : ${({ disabled }) => disabled ? 0.5 : 1.0};
+    pointer-events : ${({ disabled }) => disabled ? "none" : "auto"};
+    cursor : ${({ disabled }) => disabled ? "none" : "pointer"};
 `;
 
 export default Button;

@@ -50,7 +50,7 @@ const Login = () => {
                         {errors.password && <p className="error-text">비밀번호를 입력해주세요</p>}
                     </fieldset>
                     <fieldset>
-                        <Button type="submit" size='medium' $scheme='primary'>
+                        <Button type="submit" size='medium' scheme='primary'>
                         로그인
                         </Button>
                     </fieldset>

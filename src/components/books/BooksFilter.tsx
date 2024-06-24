@@ -43,7 +43,7 @@ const BooksFilter = () => {
                 {
                     categories.map((category) => (
                         <Button size="medium" $scheme={category.isActive ? 'primary' : 'normal'} key={category.id} onClick={()=>handleCategory(category.id)} >
-                            {category.name}
+                            {category.categoryName}
                         </Button>
                     ))
                 }

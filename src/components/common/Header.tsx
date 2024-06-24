@@ -28,7 +28,7 @@ function Header() {
                             <Link to={
                                 category.id === null
                                     ? `/books?view=${localStorage.getItem("view")}`
-                                    : `/books?category_id=${category.id}&view=${localStorage.getItem("view")}`}>{category.name}
+                                    : `/books?category_id=${category.id}&view=${localStorage.getItem("view")}`}>{category.categoryName}
                             </Link>
                         </li>
                     ))}

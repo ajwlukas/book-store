@@ -6,6 +6,7 @@ import { formatNumber } from '../../utils/format';
 import { FaHeart } from 'react-icons/fa';
 import { ViewMode } from './BooksViewSwitcher';
 import { Link } from 'react-router-dom';
+import EllipsisBox from '../common/EllipsisBox';
 
 interface Props {
     book: Book;
@@ -17,28 +18,32 @@ const BookItem = ({ book, view }: Props) => {
         <BookItemStyle view={view}>
             <Link to={`/book/${book.id}`}>
                 <div className="img">
-                <img src={getImgSrc(book.img)}
-                    alt={book.title} />
-            </div>
-            <div className="content">
-                <h2 className="title">{book.title}</h2>
-                <p className="summary">{book.summary}</p>
-                <p className="author">{book.author}</p>
-                <p className="price">{formatNumber(book.price)}원</p>
-                <div className="likes">
-                    <FaHeart />
-                    <span>{book.likes}</span>
+                    <img src={getImgSrc(book.img)}
+                        alt={book.title} />
                 </div>
-            </div>
+                <div className="content">
+                    <h2 className="title">
+                        <EllipsisBox linelimit={1}>
+                            {book.title}
+                        </EllipsisBox>
+                    </h2>
+                    <p className="summary">{book.summary}</p>
+                    <p className="author">{book.author}</p>
+                    <p className="price">{formatNumber(book.price)}원</p>
+                    <div className="likes">
+                        <FaHeart />
+                        <span>{book.likes}</span>
+                    </div>
+                </div>
             </Link>
         </BookItemStyle>
     )
 }
 
-const BookItemStyle = styled.div<Pick<Props,"view">>`
+const BookItemStyle = styled.div<Pick<Props, "view">>`
     a{
         display:flex;
-    flex-direction: ${({view})=> view === "grid" ? 'column' : "row"};;
+    flex-direction: ${({ view }) => view === "grid" ? 'column' : "row"};;
     box-shadow: 0 0 4px rgba(0,0,0,0.2);
     text-decoration: none;
     }
@@ -46,7 +51,7 @@ const BookItemStyle = styled.div<Pick<Props,"view">>`
     .img{
         border-radius: ${({ theme }) => theme.borderRadius.default};
         overflow: hidden;
-        width:${({view})=> view === "grid" ? 'auto' : "160px"};
+        width:${({ view }) => view === "grid" ? 'auto' : "160px"};
         img{
             max-width: 100%;
         }
@@ -56,7 +61,13 @@ const BookItemStyle = styled.div<Pick<Props,"view">>`
         padding : 16px;
         position: relative;
 
-        flex:${({view})=> view === "grid" ? '0' : "1"};
+        flex:${({ view }) => view === "grid" ? '0' : "1"};
+
+        EllipsisBox{
+            margin: 0 0 12px 0;
+            padding : 16px;
+
+        }
 
         .title{
             font-size: 1.25rem;

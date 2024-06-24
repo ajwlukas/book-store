@@ -29,7 +29,7 @@ const Pagination = ({pagination} : Props) => {
             {
               Array(pages).fill(0).map((_,index)=>(
                 <li key={index}>
-                  <Button size="small" $scheme={currentPage === index + 1 ? "primary" : "normal"} onClick={()=>handleClickPage(index + 1)}>{index + 1}</Button>
+                  <Button size="small" scheme={currentPage === index + 1 ? "primary" : "normal"} onClick={()=>handleClickPage(index + 1)}>{index + 1}</Button>
                 </li>
               )
 

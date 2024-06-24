@@ -43,7 +43,7 @@ const BooksViewSwitcher = () => {
     <BooksViewSwitcherStyle>
       {
         viewOptions.map(option => (
-          <Button size="small" $scheme={searchParams.get(QUERYSTRING.VIEW) === option.value ? 'primary' : 'normal'} onClick={() => handleSwitch(option.value as ViewMode)}>
+          <Button size="small" scheme={searchParams.get(QUERYSTRING.VIEW) === option.value ? 'primary' : 'normal'} onClick={() => handleSwitch(option.value as ViewMode)}>
             {option.icon}
           </Button>
         ))

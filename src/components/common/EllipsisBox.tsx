@@ -16,7 +16,7 @@ const EllipsisBox = ({ linelimit, children }: Props) => {
     <EllipsisBoxStyle linelimit={linelimit} $expanded={expanded}>
       <p>{children}</p>
       <div className="toggle">
-        <Button size="small" $scheme="normal" onClick={()=>{setExpanded(!expanded)}}>
+        <Button size="small" scheme="normal" onClick={()=>{setExpanded(!expanded)}}>
           {expanded ? "접기" : "펼치기"}<FaAngleDown/>
         </Button>
       </div>
@@ -44,7 +44,7 @@ const EllipsisBoxStyle = styled.div<EllipsisBoxStyleProps>`
     .toggle{
       display: flex;
       justify-content: end;
-      /* align-self: 1; */
+      align-self: 1;
       svg{
         transform: ${({ $expanded }) => $expanded ? "rotate(180deg)" : 'rotate(0deg)'};
       }

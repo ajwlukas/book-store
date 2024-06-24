@@ -42,14 +42,14 @@ const BooksFilter = () => {
             <div className="category">
                 {
                     categories.map((category) => (
-                        <Button size="medium" $scheme={category.isActive ? 'primary' : 'normal'} key={category.id} onClick={()=>handleCategory(category.id)} >
+                        <Button size="medium" scheme={category.isActive ? 'primary' : 'normal'} key={category.id} onClick={()=>handleCategory(category.id)} >
                             {category.categoryName}
                         </Button>
                     ))
                 }
             </div>
             <div className="new">
-                <Button size="medium" $scheme={searchParams.get(QUERYSTRING.NEWS) ?  'primary' : 'normal'} onClick={()=>handleNews()}>
+                <Button size="medium" scheme={searchParams.get(QUERYSTRING.NEWS) ?  'primary' : 'normal'} onClick={()=>handleNews()}>
                     신간
                 </Button>
             </div>

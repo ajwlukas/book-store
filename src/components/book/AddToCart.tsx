@@ -14,7 +14,7 @@ interface Props {
 
 const AddToCart = ({ book }: Props) => {
     const [quantity, setQuantity] = useState<number>(1);
-    const {addToCart, cartAdded} = useBook(book.id.toString());
+    const { addToCart, cartAdded } = useBook(book.id.toString());
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuantity(Number(e.target.value));
@@ -36,16 +36,16 @@ const AddToCart = ({ book }: Props) => {
                 <Button size="medium" scheme='normal' onClick={handleIncrease}>+</Button>
                 <Button size="medium" scheme='normal' onClick={handleDecrease}>-</Button>
             </div>
-            <Button size="medium" scheme='primary' onClick={()=>{addToCart(quantity)}}>장바구니 담기</Button>
-                <div className="added">
-                    <p>장바구니에 추가되었습니다.</p>
-                    <Link to="/cart">장바구니로 이동</Link>
-                </div>
+            <Button size="medium" scheme='primary' onClick={() => { addToCart(quantity) }}>장바구니 담기</Button>
+            <div className="added">
+                <p>장바구니에 추가되었습니다.</p>
+                <Link to="/cart">장바구니로 이동</Link>
+            </div>
         </AddToCartStyle>
     )
 }
 
-interface AddToCartStyleProps{
+interface AddToCartStyleProps {
     $added: boolean;
 }
 
@@ -65,7 +65,7 @@ const AddToCartStyle = styled.div<AddToCartStyleProps>`
         background: ${({ theme }) => theme.color.background};
         border-radius: ${({ theme }) => theme.borderRadius.default};;
         padding: 8px 12px;
-        opacity: ${({$added})=>$added ? "1" : "0"};
+        opacity: ${({ $added }) => $added ? "1" : "0"};
         transition: all 0.5s ease;
     }
 
